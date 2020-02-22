@@ -1,0 +1,131 @@
+<!--
+ * @Descripttion: 🐉半透明边框的实现方式
+ * @Author: xinxin
+ * @Date: 2020-02-19 11:00:03
+ * @LastEditTime: 2020-02-19 15:33:45
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>css学习|半透明边框的实现方式</title>
+ </head>
+ <style>
+     .layout{
+        display: flex;
+        justify-content: space-around;
+     }
+     .content{
+         width:500px;
+         height: 500px;
+         background-color: rgb(86, 226, 43);
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         
+     }
+     #code1{
+         display: none;
+         font-size: 2em;
+         width: 500px;
+         background: #655;
+         color: #fff;
+         position: absolute;
+         padding:8px;
+         bottom:10%;
+         left: 50%;
+         margin-left:-250px;
+     }
+     /* 半透明边框 */
+     .tratnslucentborder{
+         width: 300px;
+         height: 200px;
+         border:10px solid rgba(155, 86, 97, 0.3);
+         background-image: url('./35.jpg');
+         background-clip: padding-box;
+         background-size: contain;
+     }
+     /* 多重边框 */
+     .multipleborder{
+         width: 300px;
+         height: 200px;
+         border:10px solid red;
+         box-shadow: 0 0 0 10px #655, 0 0 0 15px deeppink;
+         background-image: url('./35.jpg');
+         background-clip: padding-box;
+         background-size: contain;
+     }
+     /* outling解决方案 */
+     .outlinetwoline{
+        width: 300px;
+         height: 200px;
+         border:10px solid red;
+         outline:5px solid black;
+         border-radius: 12px;
+         background-image: url('./35.jpg');
+         background-clip: padding-box;
+         background-size: contain;
+     }
+ </style>
+ <body>
+    <h3>我喜欢的毛利兰</h3>
+     <div class="layout">
+    <!-- 半透明名的实现 -->
+     <div class="content">
+         <div class="tratnslucentborder">半透明边框</div>
+         <button style="margin-left: 20px;" onclick="displayCode1()">代码显示</button>
+     </div>
+     <!-- 多重边框的实现 -->
+     <div class="content">
+        <div class="multipleborder">多重边框</div>
+        <button style="margin-left: 20px;" onclick="displayCode2()">代码显示</button>
+    </div>
+    <!-- outline解决方案 -->
+    <div class="content">
+        <div class="outlinetwoline">outline解决方案两个边框</div>
+        <button style="margin-left: 20px;" onclick="displayCode3()">代码显示</button>
+    </div>
+</div>
+<div id="code1"></div>
+ </div>
+ </body>
+ <script>
+     function displayCode1(){
+        document.querySelector('#code1').style.display = 'block';
+        document.querySelector('#code1').innerHTML=`.tratnslucentborder{
+        width: 300px;
+        height: 200px;
+        border:10px solid rgba(155, 86, 97, 0.3);
+        background-image: url('./35.jpg');
+        background-clip: padding-box;
+        background-size: contain;
+    }`
+     }
+     function displayCode2(){
+        document.querySelector('#code1').style.display = 'block';
+        document.querySelector('#code1').innerHTML=`.multipleborder{
+         width: 300px;
+         height: 200px;
+         border:10px solid red;
+         box-shadow: 0 0 0 10px #655, 0 0 0 15px deeppink;
+         background-image: url('./35.jpg');
+         background-clip: padding-box;
+         background-size: contain;
+     }`
+     }
+     function displayCode3(){
+        document.querySelector('#code1').style.display = 'block';
+        document.querySelector('#code1').innerHTML=`.outlinetwoline{
+        width: 300px;
+         height: 200px;
+         border:10px solid red;
+         outline:5px solid black;
+         border-radius: 12px;
+         background-image: url('./35.jpg');
+         background-clip: padding-box;
+         background-size: contain;
+     }`
+     }
+ </script>
+ </html>

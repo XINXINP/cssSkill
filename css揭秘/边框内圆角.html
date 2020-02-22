@@ -1,0 +1,89 @@
+<!--
+ * @Descripttion: 🐉
+ * @Author: xinxin
+ * @Date: 2020-02-19 15:33:43
+ * @LastEditTime: 2020-02-19 15:55:43
+ -->
+ <!--
+ * @Descripttion: 灵活的背景定位
+ * @Author: xinxin
+ * @Date: 2020-02-19 14:46:13
+ * @LastEditTime: 2020-02-19 15:30:38
+ -->
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>css学习|边框内圆角</title>
+ </head>
+<style>
+    .layout{
+       display: flex;
+       justify-content: space-around;
+    }
+    .content{
+        width:500px;
+        height: 500px;
+        background-color: rgb(86, 226, 43);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    /* 边框圆角变化 */
+    .borderInnerCircle{
+        width: 60%;
+        height: 60%;
+        background-color: blue;
+        background-image: url('./36.png');
+        background-repeat: no-repeat;
+        background-position:  right 20px bottom 10px;
+        border-radius: .8em;
+        padding: 1em;
+        box-shadow: 0 0 0 .6em #655;
+        /* outline: .6em solid #655; 不会随着圆角的变化而变化*/
+    }
+    #code1{
+        display: none;
+        font-size: 2em;
+        width: 600px;
+        background: #655;
+        color: #fff;
+        position: absolute;
+        padding:8px;
+        bottom:10%;
+        left: 50%;
+        margin-left:-250px;
+    }
+</style>
+<body>
+   <h3>我喜欢的毛利兰</h3>
+    <div class="layout">
+   <!-- background-position 的扩展语法方案 -->
+    <div class="content">
+        <div class="borderInnerCircle">边框内圆角|解决方案</div>
+        <button style="margin-left: 20px;" onclick="displayCode1()">代码显示</button>
+    </div>
+</div>
+<div id="code1"></div>
+</div>
+</body>
+<script>
+    function displayCode1(){
+       document.querySelector('#code1').style.display = 'block';
+       document.querySelector('#code1').innerHTML=`.borderInnerCircle{
+        width: 60%;
+        height: 60%;
+        background-color: blue;
+        background-image: url('./36.png');
+        background-repeat: no-repeat;
+        background-position:  right 20px bottom 10px;
+        border-radius: .8em;
+        padding: 1em;
+        box-shadow: 0 0 0 .6em #655;
+        /* outline: .6em solid #655; 不会随着圆角的变化而变化*/
+    }`
+    }
+</script>
+ </html>
