@@ -2,25 +2,26 @@
  * @Descripttion: 🐉条纹背景
  * @Author: xinxin
  * @Date: 2020-02-19 16:10:55
- * @LastEditTime: 2020-02-19 16:36:22
+ * @LastEditTime: 2020-02-22 18:32:13
  -->
  <!DOCTYPE html>
  <html lang="en">
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>条纹背景</title>
+     <title>css学习|条纹背景</title>
  </head>
  <style>
      .tiaowen{
          width: 60%;
          height: 60%;
          background: linear-gradient(#788 50%,red 50%);
-         background-size: 100% 20px;
+         /* background-size: 100% 20px; */
      }
      .layout{
        display: flex;
-       justify-content: space-around;
+       justify-content: space-between;
+       flex-wrap: wrap;
     }
     .content{
         width:500px;
@@ -30,6 +31,20 @@
         justify-content: center;
         align-items: center;
         
+    }
+    /* 垂直条纹 */
+    .verticalStripes{
+        width: 60%;
+         height: 60%;
+         background: linear-gradient(to right,#788 15px,red 15px);
+         background-size: 30px 100%;
+    }
+    /* 斜向条纹 */
+    .diagonalStripes{
+        width: 60%;
+         height: 60%;
+         background: linear-gradient(45deg,#788 25%,red 0,red 50%,#788 0,#788 75%,red 0);
+         background-size: 30px 30px;
     }
     #code1{
         display: none;
@@ -43,24 +58,63 @@
         left: 50%;
         margin-left:-250px;
     }
+    /* 更好的斜向条纹 */
+    .betterDiagonalStripes{
+        width: 60%;
+         height: 60%;
+         background: linear-gradient(45deg,#788 ,red 30px,#788 30px,red 60px,#788 60px,#788 120px,red 120px,#788 150px);
+         background-size: 30px 30px;
+    }
+    /* 灵活的同色系条纹 */
+    .flexibleStripes {
+        width: 60%;
+         height: 60%;
+         background: #58a;
+background-image: repeating-linear-gradient(30deg,
+hsla(0,0%,100%,.1),
+hsla(0,0%,100%,.1) 15px,
+transparent 0, transparent 30px);    
+    }
  </style>
  <body>
     <div class="layout">
         <!--  条纹的扩展语法方案 -->
          <div class="content">
-             <div class="tiaowen">条纹|background-orgin 的扩展语法方案</div>
+             <div class="tiaowen">条纹|水平条纹(无渐进)</div>
              <button style="margin-left: 20px;" onclick="displayCode1()">代码显示</button>
          </div>
         <div class="content">
-             <div class="tiaowen">灵活的背景定位|background-orgin 的扩展语法方案</div>
-             <button style="margin-left: 20px;" onclick="displayCode1()">代码显示</button>
+             <div class="verticalStripes">条纹|垂直条纹</div>
+             <button style="margin-left: 20px;" onclick="displayCode2()">代码显示</button>
          </div>
+         <div class="content">
+            <div class="diagonalStripes">条纹|斜向条纹</div>
+            <button style="margin-left: 20px;" onclick="displayCode3()">代码显示</button>
+        </div>
+        <div class="content">
+            <div class="betterDiagonalStripes">条纹|更好的斜向条纹</div>
+            <button style="margin-left: 20px;" onclick="displayCode4()">代码显示</button>
+        </div>
+        <div class="content">
+            <div class="flexibleStripes">条纹|灵活的同色系条纹</div>
+            <button style="margin-left: 20px;" onclick="displayCode5()">代码显示</button>
+        </div>
      </div>
+     <div id="code1"></div>
  </body>
  <script>
     function displayCode1(){
        document.querySelector('#code1').style.display = 'block';
-       document.querySelector('#code1').innerHTML=`.backgroundposition{
+       document.querySelector('#code1').innerHTML=` .tiaowen{
+         width: 60%;
+         height: 60%;
+         background: linear-gradient(#788 50%,red 50%);
+         /* background-size: 100% 20px; */
+     }`
+    }
+    function displayCode2(){
+       document.querySelector('#code1').style.display = 'block';
+       document.querySelector('#code1').innerHTML=`.backgroundposition {
         width: 60%;
         height: 60%;
         background-color: blue;
@@ -70,6 +124,36 @@
         background-origin: padding-box;
         background-clip: padding-box;
         background-position:  right 20px bottom 10px;
+    }`
+    }
+    function displayCode3(){
+       document.querySelector('#code1').style.display = 'block';
+       document.querySelector('#code1').innerHTML=`.diagonalStripes{
+        width: 60%;
+         height: 60%;
+         background: linear-gradient(45deg,#788 25%,red 0,red 50%,#788 0,#788 75%,red 0);
+         background-size: 30px 30px;
+    }`
+    }
+    function displayCode4(){
+       document.querySelector('#code1').style.display = 'block';
+       document.querySelector('#code1').innerHTML=`.betterDiagonalStripes{
+        width: 60%;
+         height: 60%;
+         background: linear-gradient(45deg,#788 ,red 30px,#788 30px,red 60px,#788 60px,#788 120px,red 120px,#788 150px);
+         background-size: 30px 30px;
+    }`
+    }
+    function displayCode5(){
+       document.querySelector('#code1').style.display = 'block';
+       document.querySelector('#code1').innerHTML=`.flexibleStripes {
+        width: 60%;
+         height: 60%;
+         background: #58a;
+        background-image: repeating-linear-gradient(30deg,
+        hsla(0,0%,100%,.1),
+        hsla(0,0%,100%,.1) 15px,
+        transparent 0, transparent 30px);    
     }`
     }
  </script>
