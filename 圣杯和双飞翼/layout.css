@@ -1,0 +1,66 @@
+:root{
+    /* 左边栏宽度 */
+    --lw:100px;
+    /*负左边栏宽度*/
+    --lwf:-100px;
+    /* 右边栏宽度 */
+    --rw:400px;
+    /*负左边栏宽度*/
+    --rwf:-400px;
+    /* 高度 */
+    --height:300px;
+}
+.doubleWing{
+    padding-right: var(--rw);
+}
+.dw_left{
+    float: left;
+    margin-left: -100%;
+    width:var(--lw);
+    height: var(--height);
+    background-color: blueviolet;
+}
+.dw_main{
+    width:100%;
+    float: left;
+    height: var(--height);
+    background-color: blanchedalmond;
+}
+.dw_con {
+margin-left: var(--lw);
+}
+.dw_right{
+    float: left;
+    margin-right: var(--rwf);
+    width:var(--rw);
+    background-color: brown;
+    height: var(--height); 
+}
+.holyGrail {
+    height: var(--height);
+    /* 留出左右两栏的布局 为了字体不被覆盖*/
+    padding-left: var(--lw);
+    padding-right: var(--rw);
+}
+.hg_main{
+    width:100%;
+    float: left;
+    height: var(--height);
+    background-color: blanchedalmond;
+}
+.hg_left{
+    position: relative;
+    left: var(--lwf);
+    float: left;
+    margin-left: -100%;
+    width:var(--lw);
+    height: var(--height);
+    background-color: blueviolet;
+}
+.hg_right{
+    float: left;
+    margin-right: var(--rwf);
+    width:var(--rw);
+    height: var(--height);
+    background-color: brown;
+}
