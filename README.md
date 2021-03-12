@@ -1,5 +1,5 @@
 ## css知识集锦🎉
-![image.png](./cssImg/css.svg)
+![image.png](./cssImg/css.png)
 👉我会不断更新和优化，期待您的支持。。。
 - [维基百科css](https://en.wikipedia.org/wiki/CSS)
 - [MDN的css](https://developer.mozilla.org/zh-CN/docs/Web/CSS)
