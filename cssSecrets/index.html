@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动画开发</title>
+    <link rel="stylesheet" href="css/1.css">
+</head>
+
+<body>
+    <section>
+        <h1>背景与边框</h1>
+        <p>1.扩大可点击区域</p>
+        <div class="class1"></div>
+    </section>
+    <section>
+        <p>2.box-shadow</p>
+        <div class="class2_1"></div>
+        <div class="class2_2"></div>
+        <div class="class2_3"></div>
+    </section>
+    <section>
+        <p>3.box-position</p>
+        <div class="class3"></div>
+    </section>
+    <section>
+        <p>4.边框内圆角</p>
+        <div class="class4">利用::after</div>
+    </section>
+    <section>
+        <p>5.简单条纹背景</p>
+        <div class="class5_1"></div>
+        <div class="class5_2"></div>
+        <div class="class5_3"></div>
+        <div class="class5_4"></div>
+        <div class="class5_5"></div>
+        <div class="class5_6"></div>
+    </section>
+    <section>
+        <p>6.复杂的背景图</p>
+        <div class="class6_1"></div>
+        <div class="class6_2"></div>
+    </section>
+    <section>
+        <p>7.蝉原则（周期动画）</p>
+        <div class="class7"></div>
+    </section>
+    <section>
+        <p>8.好用的边框动画</p>
+        <div class="class8_1"></div>
+        <div class="class8_2"></div>
+        <div class="class8_3"></div>
+        <div class="class8_4"></div>
+    </section>
+    <h1>形状</h1>
+    <section>
+        <p>9.自适应椭圆</p>
+        <div class="class9_1"></div>
+        <div class="class9_2"></div>
+        <div class="class9_3"></div>
+    </section>
+    <section>
+        <p>10.平行四边形</p>
+        <div class="class10_1">
+            <div>111111</div>
+        </div>
+        <div class="class10_2">
+            <div>111111</div>
+        </div>
+    </section>
+    <section>
+        <p>11.菱形四边形</p>
+        <div class="class11_1">
+            <div>111111</div>
+        </div>
+        <div class="class11_2">
+            <div>111111</div>
+        </div>
+    </section>
+    <section>
+        <p>12.切角特效</p>
+        <div class="class12_1"></div>
+        <div class="class12_2"></div>
+    </section>
+    <h1>视觉特色</h1>
+    <section>
+        <p>15.投影</p>
+        <div class="class15"></div>
+    </section>
+    <section>
+        <p>17.投影</p>
+        <div class="class17"></div>
+    </section>
+    <section>
+        <p>18.毛玻璃</p>
+        <div class="class18"></div>
+    </section>
+    <section>
+        <p>19.折角效果</p>
+        <div class="class19"></div>
+    </section>
+    <h1>文字排版</h1>
+    <section>
+        <p>20.改变断行效果</p>
+        <div class="class20">When you're down and &shy; out, remember to keep your head up. When you're up and well,
+            remember to keep your feet down.</div>
+    </section>
+    <section>
+        <p>21.文字效果展示</p>
+        <div class="class21_1">text-shadow</div>
+        <div class="class21_2">text-shadow</div>
+        <div class="class21_3">css</div>
+    </section>
+    <section>
+        <p>22.滚动效果💴</p>
+        <div class="class22">
+            <p>1</p>
+            <p>2</p>
+            <p>1</p>
+            <p>2</p>
+            <p>1</p>
+            <p>2</p>
+            <p>1</p>
+            <p>2</p>
+            <p>1</p>
+            <p>2</p>
+            <p>1</p>
+            <p>2</p>
+        </div>
+    </section>
+    <section>
+        <p>23.打字效果</p>
+        <div class="class23">Nothing worth doing in life is ever easy. If you want to do great work, it's going to take
+            a lot of hard work to do it. </div>
+    </section>
+    <section>
+        <p>24.缓动效果</p>
+        <div class="class24_1">
+            <div class="class24_2"></div>
+        </div>
+    </section>
+    <section>
+        <p>25.状态平衡动画</p>
+        <div class="class25">
+        </div>
+    </section>
+    <section>
+        <div class="mouse"></div>
+    </section>
+</body>
+<script>
+    var oBox = document.getElementsByName('body');
+    oBox.onmousedown = function (ev) {
+        ev = ev || window.event;
+        console.log(ev.offsetX, ev.offsetY);
+        console.log(ev.clientX, ev.clientY);
+        console.log(ev.pageX, ev.pageY);
+        console.log(ev.screenX, ev.screenY);
+        console.log(ev.layerX, ev.layerY);
+    }
+    var body = document.getElementsByTagName("body")[0];
+    body.addEventListener('mousemove', function (ev) {
+        console.log(ev.offsetX, ev.offsetY);
+        var mouse = document.querySelector('.mouse');
+        mouse.innerHTML = `<p>X坐标：${ev.offsetX}</p><p>Y坐标：${ev.offsetY}</p>`
+    })
+</script>
+
+</html>

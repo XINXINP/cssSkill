@@ -1,0 +1,370 @@
+//其他无关
+section{max-height: 300px;min-height: 80px;}
+div{width: 100px;height: 100px;}
+::selection{background: red;}
+.class2_1,.class2_2,.class2_3,.class5_1,.class5_2,.class5_3,.class5_4,.class5_5,.class5_6,.class6_1,.class6_2,.class8_1,.class8_2,.class8_3,.class8_4,
+.class9_1,.class9_2,.class9_3,.class10_1,.class10_2,.class11_1,.class11_2,.class12_1,.class12_2,.class21_1,.class21_3,.class21_2{display: inline-block;margin: 10px;}
+.mouse{position: fixed;right: 0;top:0;z-index: 5;width: 100px;height: 100px;}
+//扩大可点击区域
+//先定位再用after 然后在元素的后面插入 
+@mixin expand-range($top: -10px, $right: $top, $bottom: $top, $left: $right, $position: relative) {
+    position: $position;
+    cursor: pointer;
+    background: red;
+    
+    height: 30px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: $top;
+      right: $right;
+      bottom: $bottom;
+      left: $left;
+}
+}
+.class1{@include expand-range($top: -5px, $position: absolute)}
+// ===========================================
+@mixin bag1($clo1,$clo2,$clo3,$clo4) {
+    box-shadow: 0 10px $clo1,10px 0px $clo2,-10px 0px $clo3,0px -10px $clo4;
+}
+//多重边框s
+@mixin bag2($clo1,$clo2,$clo3,$clo4) {
+    box-shadow: inset 0 0 0 5px $clo1,0 0 0 5px $clo2,0 0 0 5px $clo3,0 0 0 5px $clo4;
+}
+// 描边
+@mixin bag3($clo1) {
+    outline: 10px solid $clo1;
+    outline-offset: -10px;
+}
+.class2_1{background: #000;@include bag1(#888,#786,#346,#821);}
+.class2_2{background: #000;@include bag2(#888,#786,#346,#821);}
+.class2_3{background: #000;@include bag3(#821);}
+// =======================================================
+// 灵活定位
+@mixin pos1($img,$bag,$left,$right){
+    background: url($img) no-repeat top center $bag;
+    background-position: $left $right;
+    background-size:20% 20% ;
+}
+.class3{@include pos1('../img/1.jpg',red,10px,20px)}
+// ==========================================================
+// 利用伪元素边框内圆角
+@mixin border($top: -10px, $right: $top, $bottom: $top, $left: $right, $position: relative) {
+    position: $position;
+    cursor: pointer;
+    padding: $top;
+    background: red;
+    z-index: 1;
+    &:after {
+      content: '';
+      background: orange;
+      position: absolute;
+      top: $top;
+      right: $right;
+      bottom: $bottom;
+      left: $left;
+      z-index: -1;
+      border-radius: $top;
+}
+}
+.class4{@include border(10px)}
+// ================================================================
+// 简单条纹背景
+//  linear-gradient与background-size
+@mixin twen ($clo1,$clo2){
+    background:  linear-gradient($clo1 50%,$clo2 50% );
+    background-size: 100% 20%;
+}
+@mixin twen1 ($clo1,$clo2){
+    background:  linear-gradient(134deg,$clo1 50%,$clo2 50% );
+    background-size: 100% 20%;
+}
+@mixin twen2 ($clo1,$clo2){
+    background:  linear-gradient(to right,$clo1 50%,$clo2 50% );
+    background-size: 20% 100%;
+}
+@mixin twen3 ($clo1,$clo2){
+    background:  linear-gradient(134deg,$clo1 50%,$clo2 50% );
+    background-size: 20% 100%;
+}
+@mixin twen4 ($clo1,$clo2){
+    background:  linear-gradient(134deg,$clo1 50%,$clo2 50% );
+    background-size: 100% 20%;
+}
+@mixin twen5 ($clo1,$clo2){
+    background:  linear-gradient(134deg,$clo1 50%,$clo2 50% );
+    background-size: 20% 20%;
+}
+.class5_1{@include twen(red,orange)}
+.class5_2{@include twen1(red,orange)}
+.class5_3{@include twen2(red,orange)}
+.class5_4{@include twen3(red,orange)}
+.class5_5{@include twen4(red,orange)}
+.class5_6{@include twen5(red,orange)}
+// ========================================================
+// 复杂背景图案
+@mixin fzbck($clo1) {
+background-image:  linear-gradient(45deg,$clo1 30%,transparent 0),
+     linear-gradient(45deg,transparent 75%,$clo1 0),
+     linear-gradient(45deg,$clo1 25%,transparent 0),
+     linear-gradient(45deg,transparent 75%,$clo1 0);
+    background-size: 30% 30%;
+}
+@mixin fzbck1($clo1) {
+    background-image:  linear-gradient(45deg,$clo1 30%,transparent 0), linear-gradient(to right,$clo1 30%,transparent 0), linear-gradient(75deg,$clo1 30%,transparent 0);
+        background-size: 30% 30%;
+    }
+.class6_1{
+    @include fzbck(#897)
+}
+.class6_2{
+    @include fzbck1(#297)
+}
+// ====================================
+@keyframes col{
+    20%{background:orange;}
+    60%{background: #897;}
+}
+@keyframes rad{
+    50% {
+        border-radius: 50%;
+    }
+}
+@keyframes zhuan{
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.class7{border:10px solid red;background:#565;transform: .5s all;animation: col 2s infinite,rad 1s infinite,zhuan 1s infinite;}
+// ===================================================
+.class8_1{
+    background:  linear-gradient(white,white) padding-box,
+    repeating-linear-gradient(-45deg,
+    red 0,red 12.5%,
+    transparent 0,transparent 25%,
+    orange 0,orange 37.5%,
+    transparent 0,transparent 50%) 0 / 5em 5em;
+    border: 1em solid transparent;}
+    .class8_2{
+        background:  linear-gradient(white,white) padding-box,
+        repeating-linear-gradient(-45deg,
+        red 0,red 12.5%,
+        transparent 0,transparent 25%,
+        orange 0,orange 37.5%,
+        transparent 0,transparent 50%) 0 / 5em 5em;
+        border: 1em solid transparent;
+        animation: 2s zhan1 infinite;
+    }
+    .class8_3{
+        border: 1em solid transparent;
+        animation: 2s zhan1 infinite;
+        background:  linear-gradient(white,white) padding-box,
+        repeating-linear-gradient(-45deg,
+        black 0, black 25%,white 0, white 50%) 0 / 0.6em 0.6em;
+    }
+    .class8_4{
+        border: 1px solid transparent;
+        animation: 2s zhan1 infinite;
+        background:  linear-gradient(white,white) padding-box,
+        repeating-linear-gradient(-45deg,
+        black 0, black 25%,white 0, white 50%) 0 / 0.6em 0.6em;
+    }
+        @keyframes zhan1{
+            100%{background-position: 100%;}
+        }
+// ==================================================
+// 自适应椭圆
+.class9_1{
+    background: red;
+    border-radius: 50px;
+}
+.class9_2{
+    background: red;
+    border-radius: 50%/100% 100% 0 0 ;
+}
+.class9_3{
+    background: red;
+    border-radius: 50%/100% 100% 0 50%;
+}
+// ======================================
+.class10_1{
+    transform: skew(45deg);
+    background: red;
+}
+.class10_1>div{
+    transform: skew(-45deg);
+}
+.class10_2{
+position: relative;
+}
+.class10_2:before{
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    z-index: -1;
+    background: orange;
+    transform: skew(45deg);
+}
+// =======================================================
+// 菱形四边形
+.class11_1{
+    background: red;
+    transform: rotate(45deg);
+}
+.class11_1>div{
+    transform: rotate(-45deg);
+}
+.class11_2{
+    background: orange;
+    transform: rotate(45deg);
+}
+.class11_2{
+    clip-path: polygon(0 0,100% 0,100% 100%,0 100%);
+    transition: 1s clip-path;
+}
+.class11_2:hover{
+    clip-path: polygon(50% 0,100% 50%,50% 100%,0 50%);//图片裁剪
+}
+// =========================================
+//切角特效
+.class12_1{background:  linear-gradient(45deg,transparent 20px,red 0);}//不涉及
+.class12_2{	background: radial-gradient(circle at top left ,transparent 15px,red 0) top left,
+    radial-gradient(circle at top right ,transparent 15px,red 0) top right,
+    radial-gradient(circle at bottom right ,transparent 15px,red 0) bottom right,
+    radial-gradient(circle at bottom left ,transparent 15px,red 0) bottom left;
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+}
+// ==================================
+// 投影
+.class15{
+    background: orange;
+    box-shadow: 0 5px 4px -4px black;
+}
+// ==========================================
+.class17{
+    transition:  1.5s filter;
+    filter:sepia(1) saturate(1) hue-rotate(295deg);
+    background: red;
+}
+.class17:hover{filter:none;}
+// =============================================
+.class18{
+background: url(../img/1.jpg) no-repeat top center;
+background-size: 100%;
+filter: blur(2px);
+}
+// ================================================
+// 折角效果
+.class19{
+background: blue;
+background: linear-gradient(to left bottom,transparent 50%,orange 0) no-repeat 100% 0 / 21px 21px,
+linear-gradient(-135deg,transparent 15px,red 0);
+}
+// ================================================
+.class20{
+    width: 300px;
+    hyphens: auto;
+}
+// ===================================================
+// 文字效果
+//1text-shadow为文字添加阴影。可以为文字与  text-decorations  添加多个阴影，阴影值之间用逗号隔开。每个阴影值由元素在X和Y方向的偏移量、模糊半径和颜色值组成。
+.class21_1{
+    color: #fff;
+    background: red;
+    text-shadow: 1px 1px black,-1px -1px black,
+    1px -1px black, -1px 1px black;
+}
+.class21_2{
+    color: #fff;
+    background: red;
+    transform: .5s;
+}
+.class21_2:hover{
+    filter: blur(1px);
+}
+.class21_3{
+    color: #fff;
+    font-size: 34px;
+    display: block;
+    background: red;
+    text-align: center;
+    text-shadow: 0 1px hsl(0,89%,85%),
+    0 2px hsl(0,89%,80%),
+    0 3px hsl(0,89%,75%),
+    0 4px hsl(0,89%,70%),
+    0 5px hsl(0,89%,65%),
+    0 5px 10px black;
+}
+// ==============================================
+.class22{
+    overflow-y: auto;
+    background: url(../img/1.jpg) no-repeat;
+    background-size: 50px 50px;
+    background-position: 20% 30%;
+    background-attachment: local,scroll;
+}
+// ====================================================
+// 灵魂在于border-right
+@keyframes typing {
+    from {
+        width: 0
+    }
+}
+
+@keyframes caret {
+    50% {
+        border-right-color: transparent;
+    }
+}
+.class23{
+    max-width: 100%;
+    width: 800px;
+    height: 25px;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .05em solid;
+    animation: typing 8s steps(100) infinite, caret 2s steps(1) infinite;
+}
+// ==================================
+.class24_1{
+    background: green;
+    position: relative;
+}
+.class24_2{
+    width: 20px;height: 20px;border-radius: 50%;
+    background: red;
+    position: relative;
+    animation: bounce 6s infinite ;
+}
+@keyframes bounce {
+    60%,
+    80%,
+    to {
+        transform: translateY(40px);
+        animation-timing-function: ease;
+    }
+    70% {
+        transform: translateY(50px);
+    }
+    90% {
+        transform: translateY(60px);
+    }
+}
+// ====================================================
+// animation-play-state
+@keyframes bk1{
+    20%{background-position: 100% 100%;}
+    40%{background-position: 0% 100%;}
+    60%{background-position: 100% 0%;}
+}
+.class25{
+    background: url(../img/1.jpg);
+    animation: bk1 10s infinite;
+    animation-play-state: paused;
+    // background-size: auto 100%;
+}
+.class25:hover{animation-play-state: running;}
